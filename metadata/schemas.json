@@ -1,0 +1,158 @@
+{
+    "close_approach_data": [
+        {
+            "column_name": "neo_reference_id",
+            "column_type": "int32",
+            "column_position": 1
+        },
+        {
+            "column_name": "relative_velocity.kilometers_per_hour",
+            "column_type": "float64", 
+            "column_position": 2
+        },
+        {
+            "column_name": "miss_distance.kilometers",
+            "column_type": "float64",
+            "column_position": 3
+        },
+        {
+            "column_name": "approach_datetime",
+            "column_type": "datetime64[ns]",
+            "column_position": 4
+        },
+        {
+            "column_name": "year",
+            "column_type": "int16",
+            "column_position": 5
+        },
+        {
+            "column_name": "month",
+            "column_type": "int8",
+            "column_position": 6
+        },
+        {
+            "column_name": "week",
+            "column_type": "int8",
+            "column_position": 7
+        },
+        {
+            "column_name": "extraction_date",
+            "column_type": "datetime64[ns]",
+            "column_position": 8
+        }
+    ],
+    "asteroid_data": [
+        {
+            "column_name": "neo_reference_id",
+            "column_type": "int32",
+            "column_position": 1
+        },
+        {
+            "column_name": "name",
+            "column_type": "string",
+            "column_position": 2
+        },
+        {
+            "column_name": "nasa_jpl_url",
+            "column_type": "string",
+            "column_position": 3
+        },
+        {
+            "column_name": "is_potentially_hazardous_asteroid",
+            "column_type": "bool",
+            "column_position": 4
+        },
+        {
+            "column_name": "absolute_magnitude_h",
+            "column_type": "float32",
+            "column_position": 5
+        },
+        {
+            "column_name": "estimated_diameter.kilometers.estimated_diameter_min",
+            "column_type": "float32",
+            "column_position": 6
+        },
+        {
+            "column_name": "estimated_diameter.kilometers.estimated_diameter_max",
+            "column_type": "float32",
+            "column_position": 7
+        },
+        {
+            "column_name": "approaches_to_earth",
+            "column_type": "int16",
+            "column_position": 8
+        }
+    ],
+    "near_earth_approaches": [
+        {
+            "column_name": "neo_reference_id",
+            "column_type": "int32",
+            "column_position": 1
+        },
+        {
+            "column_name": "name",
+            "column_type": "string",
+            "column_position": 2
+        },
+        {
+            "column_name": "absolute_magnitude_h",
+            "column_type": "float32",
+            "column_position": 3
+        },
+        {
+            "column_name": "estimated_diameter_avg",
+            "column_type": "float64",
+            "column_position": 4
+        },
+        {
+            "column_name": "albedo",
+            "column_type": "float64",
+            "column_position": 5
+        },
+        {
+            "column_name": "approaches_to_earth",
+            "column_type": "int16",
+            "column_position": 6
+        },
+        {
+            "column_name": "relative_velocity",
+            "column_type": "float64",
+            "column_position": 7
+        },
+        {
+            "column_name": "miss_distance",
+            "column_type": "float64",
+            "column_position": 8
+        },
+        {
+            "column_name": "approach_date",
+            "column_type": "datetime64[ns]",
+            "column_position": 9
+        },
+        {
+            "column_name": "approach_time",
+            "column_type": "datetime64[ns]",
+            "column_position": 10
+        },
+        {
+            "column_name": "count_per_date",
+            "column_type": "int16",
+            "column_position": 11
+        },
+        {
+            "column_name": "year",
+            "column_type": "int16",
+            "column_position": 12
+        },
+        {
+            "column_name": "month",
+            "column_type": "int8",
+            "column_position": 13
+        },
+        {
+            "column_name": "week",
+            "column_type": "int8",
+            "column_position": 14
+        }
+    ]
+}
