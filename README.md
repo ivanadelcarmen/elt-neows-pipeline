@@ -12,11 +12,15 @@ Aditionally, another endpoint from the API called 'browse' offers descriptive da
 
 The program is modularized because the set of all functions and aditional tools implemented specifically for the API's behaviour makes the main file excessively complex in terms of reading, storage, and testing capacity. Moreover, it is designed to make periodic requests and collect data predicted for the next 7 days inclusively, taking as the 'start_date' parameter the last date written in the stateful file or, in the lack thereof, the execution date, while taking the date after 7 days as the 'end_date' parameter. The application then loads the data of Earth-approaching asteroids in the selected date range along with their measurable attributes (which are updated but unfrequently) in Delta Lake format for further processing. These steps imply that the pipeline follows an ELT structure and that the full extraction depends on the incremental fashion extraction. Given this, in the `get_data()` extraction function an asynchronous request method is used for the 'feed' endpoint that requires individual IDs, so that multiple and continuous requests can be made effectively. In case some specific request fails, it is skipped to continue with the next one.
 
+#
+
 ### Loading
 
 The data is loaded into a Datalake folder containing subdirectories such as the data stage, the API from which the data was extracted, and each table corresponding to each endpoint. The incremental table (**close_approach_data**) is partitioned by year, month, and week of month (computed with a dedicated function) to optimize the data partition size, its organization, and reading. Each partition column is extracted from the 'approach_datetime' column, created in the table's extraction from casting 'epoch_date_close_approach', in Unix Time format, to datetime format ('YYYY-mm-dd HH:MM:SS').
 
 For the full extraction (**asteroid_data**), data is added using an UPSERT operation that updates a register if an ID asocciated to it already exists in the table or inserts a new register otherwise, since, with each new batch registered, it is likely that for some NEOs already added there will be updates in some of their attributes (covered by the `when_matched_update_all` method) but it can also happen that new NEOs need to be inserted according to the results of the incremental extraction (covered by the `when_not_matched_insert_all` method). On the other hand, when loading incremental data, rows are compared by 'approach_datetime' and 'neo_reference_id' columns to avoid duplicates; an INSERT operation is performed with this aditional functionality.
+
+#
 
 ### Transformation
 
@@ -43,6 +47,8 @@ $$A=10^{-2\log(D) + 6.2472 - 0.4H}$$
 3. An INNER JOIN is performed between the full table and the incremental table to merge approach data with relevant descriptive data from the approaching asteroids. The function defined as `inner_join()` also takes a selection of columns in a list as a parameter, which is retrieved in `app.py` from the schemas file.
 
 The tables in both transformation stages are stored in their respective directories with a logic similar to the one described in the 'Loading' section above. For the gold stage, only the joined table is loaded (**near_earth_approaches**).
+
+#
 
 ### Optimization
 
